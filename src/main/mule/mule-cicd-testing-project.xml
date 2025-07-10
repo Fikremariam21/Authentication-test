@@ -9,22 +9,19 @@ http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/cu
 http://www.mulesoft.org/schema/mule/oauth2-provider http://www.mulesoft.org/schema/mule/oauth2-provider/current/mule-oauth2-provider.xsd">
 	<os:object-store name="client_os" doc:name="Object store" doc:id="182101a1-6b10-4ce6-a869-a3731b93a542" />
 	<os:object-store name="token_os" doc:name="Object store" doc:id="4114b3ff-73b1-4c05-9ccf-5c44394c3539" />
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6f791e15-a00f-4828-9297-5d958c4beb34" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
-	</http:listener-config>
 	<oauth2-provider:config name="OAuth2_Provider_Config" doc:name="OAuth2 Provider Config" doc:id="fec91f6c-ba25-4440-864b-f61d211bd29e" listenerConfig="HTTP_Listener_config" clientStore="client_os" supportedGrantTypes="CLIENT_CREDENTIALS" >
 		<oauth2-provider:token-config tokenStore="token_os" />
 	</oauth2-provider:config>
-	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="54e725ef-9eee-4fcc-8dcf-82e7792f4bf8" >
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="807a1751-aea7-4095-b789-6e5f1ac4cb9f" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<flow name="mule-cicd-testing-projectFlow" doc:id="2b446115-f115-4a59-81ef-fcbbd19db41d" >
-		<http:listener doc:name="Listener" doc:id="03617d17-6d03-459d-b92b-fac902536c01" config-ref="HTTP_Listener_config1" path="/createClient"/>
-		<oauth2-provider:create-client doc:name="Create client" doc:id="238f7da5-35ab-4d27-97be-cd58fc1165a3" config-ref="OAuth2_Provider_Config" clientId="#[attributes.headers.client_id]" type="CONFIDENTIAL" secret="#[attributes.headers.client_secret]" clientName="#[attributes.headers.client_name]" description='#[""]' principal='#[""]' redirectUris='#["ABC.COM"]' authorizedGrantTypes='#["CLIENT-CREDENTIALS"]' failIfPresent="true"/>
+		<http:listener doc:name="Listener" doc:id="03617d17-6d03-459d-b92b-fac902536c01" path="/createClient" config-ref="HTTP_Listener_config"/>
+		<oauth2-provider:create-client doc:name="Create client" doc:id="238f7da5-35ab-4d27-97be-cd58fc1165a3" config-ref="OAuth2_Provider_Config" clientId="#[attributes.headers.client_id]" type="CONFIDENTIAL" secret="#[attributes.headers.client_secret]" clientName="#[attributes.headers.client_name]" description='#[""]' principal='#[""]' redirectUris='#[["abc.com"]]' authorizedGrantTypes='#[["CLIENT_CREDENTIALS"]]' failIfPresent="true"/>
 		<set-payload value='#["client created"]' doc:name="Set Payload" doc:id="c82136aa-4da8-4faa-a849-4f2f00c5afb0" />
 	</flow>
 	<flow name="mule-cicd-testing-projectFlow1" doc:id="765f4cc9-e2f8-41e5-aca6-b40aeb841725" >
-		<http:listener doc:name="Listener" doc:id="5ae52335-1ab5-4b06-81e7-b4284ae2ffac" config-ref="HTTP_Listener_config1" path="/validate"/>
+		<http:listener doc:name="Listener" doc:id="5ae52335-1ab5-4b06-81e7-b4284ae2ffac" path="/validate" config-ref="HTTP_Listener_config"/>
 		<oauth2-provider:validate-token doc:name="Validate token" doc:id="b8fddac7-b58b-4e72-b52a-bd154580c165" config-ref="OAuth2_Provider_Config"/>
 		<ee:transform doc:name="Transform Message" doc:id="3b204b14-bddc-4a6e-b8a3-fa454b80bd80" >
 			<ee:message >
