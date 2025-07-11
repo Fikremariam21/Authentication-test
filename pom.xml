@@ -30,7 +30,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<classifier>mule-application</classifier>
-					<cloudhub2Deployment>
+					<cloudhubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
 						<provider>MC</provider>
@@ -43,7 +43,7 @@
 						<vCores>0.1</vCores>
 						<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 						<deploymentSettings/>
-					</cloudhub2Deployment>
+					</cloudhubDeployment>
 				</configuration>
 			</plugin>
 		</plugins>
