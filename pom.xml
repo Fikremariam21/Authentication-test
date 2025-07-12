@@ -51,14 +51,15 @@
     </plugins>
   </build>
 
-  <distributionManagement>
-    <repository>
-      <id>anypoint-exchange</id>
-      <name>Anypoint Exchange Repository</name>
-      <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/638c11e8-0892-492c-aa45-a7ea1e397aa5/maven</url>
-      <layout>default</layout>
-    </repository>
-  </distributionManagement>
+ <distributionManagement>
+  <repository>
+    <id>repository</id> <!-- MUST match the <id> in settings.xml -->
+    <name>Anypoint Exchange Repository</name>
+    <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/638c11e8-0892-492c-aa45-a7ea1e397aa5/maven</url>
+    <layout>default</layout>
+  </repository>
+</distributionManagement>
+
 
   <dependencies>
     <dependency>
