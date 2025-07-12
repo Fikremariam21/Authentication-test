@@ -39,7 +39,7 @@
             <provider>MC</provider>
             <environment>Sandbox</environment>
             <target>CloudHub US-East-2</target>
-            <server>repository</server>
+            <server>anypoint-exchange</server>
             <applicationName>${project.artifactId}</applicationName>
             <releaseChannel>EDGE</releaseChannel>
             <replicas>1</replicas>
@@ -50,10 +50,10 @@
       </plugin>
     </plugins>
   </build>
-
+  
  <distributionManagement>
   <repository>
-    <id>repository</id> <!-- MUST match the <id> in settings.xml -->
+    <id>anypoint-exchange</id>
     <name>Anypoint Exchange Repository</name>
     <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/638c11e8-0892-492c-aa45-a7ea1e397aa5/maven</url>
     <layout>default</layout>

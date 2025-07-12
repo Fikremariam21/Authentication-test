@@ -9,10 +9,10 @@
 
     <servers>
         <server>
-            <id>repository</id>
-            <username>${client.id}</username>
-            <password>${client.secret}</password>
-        </server>
+           <id>anypoint-exchange</id>
+           <username>${env.CONNECTED_CLIENT_ID}</username>
+           <password>${env.CONNECTED_CLIENT_SECRET}</password>
+      </server>
     </servers>
 
 </settings>
