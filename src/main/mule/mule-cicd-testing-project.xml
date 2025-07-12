@@ -19,6 +19,14 @@ http://www.mulesoft.org/schema/mule/oauth2-provider http://www.mulesoft.org/sche
 		<http:listener doc:name="Listener" doc:id="f67a8328-9041-454c-9fa3-bb3da69ba500" path="/createClient" config-ref="HTTP_Listener_config"/>
 		<oauth2-provider:create-client doc:name="Create client" doc:id="58805a09-e9e5-4582-9aee-aab61cfa96b1" config-ref="OAuth2_Provider_Config" clientId="#[attributes.headers.client_id]" type="CONFIDENTIAL" secret="#[attributes.headers.client_secret]" clientName="#[attributes.headers.client_name]" description='#[""]' principal='#[""]' redirectUris='#[["abc.com"]]' authorizedGrantTypes='#[["CLIENT_CREDENTIALS"]]' failIfPresent="true"/>
 		<set-payload value='#["client created gracefully!"]' doc:name="Set Payload" doc:id="e62176a5-fad0-4026-8efe-c630b78aec96" />
+		<ee:transform doc:name="Transform Message" doc:id="c214bd1d-7abe-491e-af78-4351576cb1f9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 	<flow name="mule-cicd-testing-projectFlow1" doc:id="cca73674-8e17-4e1f-a580-8f794985589b" >
 		<http:listener doc:name="Listener" doc:id="f9884c82-df50-4b4d-89c3-939e2d76ba51" path="/validate" config-ref="HTTP_Listener_config"/>

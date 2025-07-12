@@ -10,9 +10,9 @@
     <servers>
         <server>
             <id>repository</id>
-            <username>---Client---</username>
-            <password>${client.id}~?~${client.secret}</password>
+            <username>${client.id}</username>
+            <password>${client.secret}</password>
         </server>
     </servers>
 
-    </settings>
+</settings>
