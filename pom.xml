@@ -45,11 +45,20 @@
             <replicas>1</replicas>
             <vCores>0.1</vCores>
             <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-          </cloudhubDeployment>
+            </cloudhubDeployment>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>anypoint-exchange</id>
+      <name>Anypoint Exchange Repository</name>
+      <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/638c11e8-0892-492c-aa45-a7ea1e397aa5/maven</url>
+      <layout>default</layout>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
